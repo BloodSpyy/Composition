@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".presentation.ChooseLevelFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="@string/choose_level_label"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/buttonLevelTest"
+        style="@style/LevelTextStyle"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:text="@string/test_level_button" />
+
+    <Button
+        android:id="@+id/buttonLevelEasy"
+        style="@style/LevelTextStyle"
+        android:backgroundTint="@android:color/holo_green_light"
+        android:text="@string/easy_level_button" />
+
+    <Button
+        android:id="@+id/buttonLevelMedium"
+        style="@style/LevelTextStyle"
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:text="@string/medium_level_button" />
+
+    <Button
+        android:id="@+id/buttonLevelHard"
+        style="@style/LevelTextStyle"
+        android:backgroundTint="@android:color/holo_red_light"
+        android:text="@string/hard_level_button" />
+</LinearLayout>
