@@ -27,7 +27,9 @@ class WelcomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonUnderstand.setOnClickListener {
-
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.mainContainer, ChooseLevelFragment.newInstance())
+                .commit()
         }
     }
 
