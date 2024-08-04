@@ -17,13 +17,17 @@ object GameRepositoryImpl : GameRepository {
         val example = Random.nextInt(MIN_EXAMPLE_VALUE, maxExampleValue + 1)
         val visibleNumbers = Random.nextInt(MIN_VISIBLE_NUMBERS, example)
         val rightAnswer = example - visibleNumbers
-        val options = HashSet<Int>()
+        val options = mutableListOf<Int>()
         options.add(rightAnswer)
 
         val fromForRandom = max(rightAnswer - countOfOptions, MIN_ANSWER_VALUE)
         val toForRandom = min(maxExampleValue, rightAnswer + countOfOptions)
         while (options.size < countOfOptions) {
-            options.add(Random.nextInt(fromForRandom, toForRandom))
+            val number = Random.nextInt(fromForRandom, toForRandom)
+
+            if (number !in options) {
+                options.add(number)
+            }
         }
 
         return Question(example, visibleNumbers, options)

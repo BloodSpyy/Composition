@@ -1,12 +1,14 @@
-package com.bloodspy.composition.presentation
+package com.bloodspy.composition.presentation.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.bloodspy.composition.R
 import com.bloodspy.composition.databinding.FragmentWelcomeBinding
+import com.bloodspy.composition.presentation.fragment.ChooseLevelFragment
 
 class WelcomeFragment : Fragment() {
     private var _binding: FragmentWelcomeBinding? = null
@@ -27,9 +29,7 @@ class WelcomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonUnderstand.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.mainContainer, ChooseLevelFragment.newInstance())
-                .commit()
+            launchChooseLevelFragment()
         }
     }
 
@@ -37,5 +37,11 @@ class WelcomeFragment : Fragment() {
         super.onDestroyView()
 
         _binding = null
+    }
+
+    private fun launchChooseLevelFragment() {
+        findNavController().navigate(
+            WelcomeFragmentDirections.actionWelcomeFragmentToChooseLevelFragment()
+        )
     }
 }

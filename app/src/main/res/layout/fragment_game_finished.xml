@@ -1,42 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    tools:context=".presentation.GameFinishedFragment">
+<layout>
 
-    <ImageView
-        android:id="@+id/imageViewEmojiResult"
+    <data>
+
+        <variable
+            name="gameResult"
+            type="com.bloodspy.composition.domain.entity.GameResult" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="40dp"
-        android:contentDescription="@string/game_over"
-        app:srcCompat="@drawable/ic_funny_smile" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".presentation.fragment.GameFinishedFragment">
 
-    <TextView
-        android:id="@+id/textViewRequiredAnswer"
-        style="@style/GameFinishedStyle"
-        android:text="@string/required_answer" />
+        <ImageView
+            android:id="@+id/imageViewEmojiResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="40dp"
+            android:contentDescription="@string/game_over"
+            app:emojiResult="@{gameResult.isWinner}"
+            tools:srcCompat="@drawable/ic_funny_smile" />
 
-    <TextView
-        android:id="@+id/textViewScore"
-        style="@style/GameFinishedStyle"
-        android:text="@string/your_score" />
+        <TextView
+            android:id="@+id/textViewRequiredAnswer"
+            style="@style/GameFinishedStyle"
+            app:requiredAnswer="@{gameResult.gameSettings.minCountOfRightAnswers}"
+            tools:text="@string/required_answer" />
 
-    <TextView
-        android:id="@+id/textViewRequiredPercent"
-        style="@style/GameFinishedStyle"
-        android:text="@string/required_percent" />
+        <TextView
+            android:id="@+id/textViewScore"
+            style="@style/GameFinishedStyle"
+            app:score="@{gameResult.countOfRightAnswers}"
+            tools:text="@string/your_score" />
 
-    <TextView
-        android:id="@+id/textViewPercent"
-        style="@style/GameFinishedStyle"
-        android:text="@string/your_percent" />
+        <TextView
+            android:id="@+id/textViewRequiredPercent"
+            style="@style/GameFinishedStyle"
+            app:requiredPercent="@{gameResult.gameSettings.minPercentOfRightAnswers}"
+            tools:text="@string/required_percent" />
 
-    <Button
-        android:id="@+id/buttonTryAgain"
-        style="@style/GameFinishedStyle"
-        android:text="@string/try_again" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/textViewPercent"
+            style="@style/GameFinishedStyle"
+            app:percent="@{gameResult}"
+            tools:text="@string/your_percent" />
+
+        <Button
+            android:id="@+id/buttonTryAgain"
+            style="@style/GameFinishedStyle"
+            android:text="@string/try_again" />
+    </LinearLayout>
+</layout>

@@ -1,11 +1,14 @@
-package com.bloodspy.composition.presentation
+package com.bloodspy.composition.presentation.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.bloodspy.composition.R
 import com.bloodspy.composition.databinding.FragmentChooseLevelBinding
+import com.bloodspy.composition.domain.entity.Level
 
 class ChooseLevelFragment : Fragment() {
     private var _binding : FragmentChooseLevelBinding? = null
@@ -23,6 +26,20 @@ class ChooseLevelFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        with(binding) {
+            buttonLevelTest.setOnClickListener {
+                launchGameFragment(Level.TEST)
+            }
+            buttonLevelEasy.setOnClickListener {
+                launchGameFragment(Level.EASY)
+            }
+            buttonLevelNormal.setOnClickListener {
+                launchGameFragment(Level.NORMAL)
+            }
+            buttonLevelHard.setOnClickListener {
+                launchGameFragment(Level.HARD)
+            }
+        }
         super.onViewCreated(view, savedInstanceState)
 
     }
@@ -33,7 +50,9 @@ class ChooseLevelFragment : Fragment() {
         _binding = null
     }
 
-    companion object {
-        fun newInstance() = ChooseLevelFragment()
+    private fun launchGameFragment(level: Level) {
+        findNavController().navigate(
+            ChooseLevelFragmentDirections.actionChooseLevelFragmentToGameFragment(level)
+        )
     }
 }
